@@ -27,7 +27,7 @@ def main():
         image_input = st.sidebar.file_uploader("Choose an eye image: ", type="jpg")
         if image_input:
             img = image_input.getvalue()
-            st.sidebar.image(img, width=300, height=300)
+            st.sidebar.image(img, width=300)#, height=300)
             detect = st.sidebar.button("Detect Cataract")
             np.set_printoptions(suppress=True)
             model = tensorflow.keras.models.load_model('eye_models/cataract/model.h5')
@@ -39,7 +39,7 @@ def main():
             normalized_image_array = (image_array.astype(np.float32) / 127.0) - 1
             data[0] = normalized_image_array
             size = st.slider("Adjust Image Size: ", 300, 1000)
-            st.image(img, width=size, height=size)
+            st.image(img, width=size)#, height=size)
             st.write("------------------------------------------------------")
             dr = st.sidebar.button("Analyze Diabetic Retinopathy")
             r = st.sidebar.button("Analyze Redness Levels")
