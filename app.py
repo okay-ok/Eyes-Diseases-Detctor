@@ -34,7 +34,7 @@ def main():
             data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
             image = Image.open(image_input)
             size = (224, 224)
-            image = ImageOps.fit(image, size, Image.ANTIALIAS)
+            image = ImageOps.fit(image, size,Image.LANCZOS)  # Image.ANTIALIAS) #PIL.Image.LANCZOS
             image_array = np.asarray(image)
             normalized_image_array = (image_array.astype(np.float32) / 127.0) - 1
             data[0] = normalized_image_array
@@ -58,7 +58,7 @@ def main():
                 data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
                 image = Image.open(image_input)
                 size = (224, 224)
-                image = ImageOps.fit(image, size, Image.ANTIALIAS)
+                image = ImageOps.fit(image, size,Image.LANCZOS)# Image.ANTIALIAS)
                 image_array = np.asarray(image)
                 normalized_image_array = (image_array.astype(np.float32) / 127.0) - 1
                 data[0] = normalized_image_array
