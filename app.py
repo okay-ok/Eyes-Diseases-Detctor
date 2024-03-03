@@ -8,7 +8,7 @@ def main():
     st.title("Eye_Risk_Demo")
     st.write("------------------------------------------")
     st.sidebar.title("Command Bar")
-    choices = ["Home","Eye-risk", "COVID", "Skin"]
+    choices = ["Home","Eye-risk", "Skin"]
     menu = st.sidebar.selectbox("Menu: ", choices)
     st.set_option('deprecation.showfileUploaderEncoding', False)
     if menu =="Home":
@@ -28,7 +28,7 @@ def main():
         if image_input:
             img = image_input.getvalue()
             st.sidebar.image(img, width=300)#, height=300)
-            detect = st.sidebar.button("Detect Cataract")
+            detect = st.sidebar.button("Run Analysis using uploaded model")
             np.set_printoptions(suppress=True)
             model = tensorflow.keras.models.load_model('eye_models/cataract/model.h5')
             data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
@@ -41,8 +41,7 @@ def main():
             size = st.slider("Adjust Image Size: ", 300, 1000)
             st.image(img, width=size)#, height=size)
             st.write("------------------------------------------------------")
-            dr = st.sidebar.button("Analyze Diabetic Retinopathy")
-            r = st.sidebar.button("Analyze Redness Levels")
+          
             if detect:
                 prediction = model.predict(data)
                 class1 = prediction[0,0]
