@@ -29,64 +29,63 @@ elif menu == "Eyes":
     image_input = st.file_uploader("Choose an eye image: ", type=['png', 'jpg'])
     start_camera = st.checkbox("Start Camera")
 
-    if image_input:
+   if image_input:
             img = image_input.getvalue()
-            st.image(img, width=300)# height=300)
-            detect = st.button("Detect Cataract")
+            st.sidebar.image(img, width=300)#, height=300)
+            detect = st.sidebar.button("Run Analysis using uploaded model")
             np.set_printoptions(suppress=True)
-            model = keras.models.load_model('eye_models/cataract/model.h5')
+            model = tensorflow.keras.models.load_model('eye_models/cataract/model.h5')
             data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
             image = Image.open(image_input)
             size = (224, 224)
-            image = ImageOps.fit(image, size, Image.LANCZOS)
+            image = ImageOps.fit(image, size,Image.LANCZOS)  # Image.ANTIALIAS) #PIL.Image.LANCZOS
             image_array = np.asarray(image)
             normalized_image_array = (image_array.astype(np.float32) / 127.0) - 1
             data[0] = normalized_image_array
             size = st.slider("Adjust Image Size: ", 300, 1000)
             st.image(img, width=size)#, height=size)
             st.write("------------------------------------------------------")
-            
+          
             if detect:
                 prediction = model.predict(data)
                 class1 = prediction[0,0]
                 class2 = prediction[0,1]
-                if class1 > 2*class2:
-                    st.markdown("DetAll thinks this is a Cataract by {:.2f}%".format(class1 * 100) )
-                elif class2 > 2*class1:
-                    st.markdown("DetAll thinks this is not Cataract by {:.2f}%".format(class2 * 100))
+                if class1 > 3*class2:
+                    st.markdown("Your Model predicts the eye cloudiness risk is {:.2f}%".format(class1 * 100) )
+                elif class2 > 3*class1:
+                    st.markdown("Your model does not  by {:.2f}%".format(class2 * 100))
                 else:
-                    st.write("We encountered an ERROR. This should be temporary, please try again with a better quality image. Cheers!")
+                    st.write("We encountered an ERROR in making a definite prediction. This should be temporary, please try again with a better quality image.")
 
     if start_camera:
         picture = st.camera_input("Take a picture", key="eye_photo" ,help="Click a close up photo of your eye so that we can check and analyse it")
-        if picture:
+       if picture:
             img = picture.getvalue()
-            # st.image(img, width=300)# height=300)
-            detect = st.button("Detect Cataract")
+            st.sidebar.image(img, width=300)#, height=300)
+            detect = st.sidebar.button("Run Analysis using uploaded model")
             np.set_printoptions(suppress=True)
-            model = keras.models.load_model(r'D:\DEP\Eyes-Diseases-Detctor\eye_models\cataract\model.h5')
+            model = tensorflow.keras.models.load_model('eye_models/cataract/model.h5')
             data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
             image = Image.open(image_input)
             size = (224, 224)
-            image = ImageOps.fit(image, size, Image.LANCZOS)
+            image = ImageOps.fit(image, size,Image.LANCZOS)  # Image.ANTIALIAS) #PIL.Image.LANCZOS
             image_array = np.asarray(image)
             normalized_image_array = (image_array.astype(np.float32) / 127.0) - 1
             data[0] = normalized_image_array
             size = st.slider("Adjust Image Size: ", 300, 1000)
             st.image(img, width=size)#, height=size)
             st.write("------------------------------------------------------")
-                
+          
             if detect:
                 prediction = model.predict(data)
                 class1 = prediction[0,0]
                 class2 = prediction[0,1]
-                if class1 > 2*class2:
-                    st.markdown("DetAll thinks this is a Cataract by {:.2f}%".format(class1 * 100) )
-                elif class2 > 2*class1:
-                    st.markdown("DetAll thinks this is not Cataract by {:.2f}%".format(class2 * 100))
+                if class1 > 3*class2:
+                    st.markdown("Your Model predicts the eye cloudiness risk is {:.2f}%".format(class1 * 100) )
+                elif class2 > 3*class1:
+                    st.markdown("Your model does not  by {:.2f}%".format(class2 * 100))
                 else:
-                    st.write("We encountered an ERROR. This should be temporary, please try again with a better quality image. Cheers!")
-
+                    st.write("We encountered an ERROR in making a definite prediction. This should be temporary, please try again with a better quality image.")
 elif menu == "Skin":
     st.sidebar.write("Get started.")
     st.write("---------------------------")
