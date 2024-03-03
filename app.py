@@ -59,7 +59,7 @@ def main():
     elif menu == "Skin":
         import zipfile
         with zipfile.ZipFile('model.zip', 'r') as zip_ref:
-            zip_ref.extractall('model.h5')
+            zip_ref.extractall('')
             st.write('extracted!')
         st.sidebar.write("Get Started.")
         st.write("---------------------------")
