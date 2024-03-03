@@ -34,7 +34,7 @@ elif menu == "Eyes":
             st.image(img, width=300)# height=300)
             detect = st.button("Detect Cataract")
             np.set_printoptions(suppress=True)
-            model = keras.models.load_model(r'eye_models\cataract\model.h5')
+            model = keras.models.load_model('eye_models/cataract/model.h5')
             data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
             image = Image.open(image_input)
             size = (224, 224)
