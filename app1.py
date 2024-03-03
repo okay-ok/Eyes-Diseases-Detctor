@@ -114,7 +114,7 @@ elif menu == "Skin":
                 data[0] = normalized_image_array
                 prediction = model.predict(data)
                 st.write(prediction)
-                st.write("0/1/4/6: ", prediction[0,0]+prediction[0,1]+prediction[0,4]+prediction[0,6], "2: ", prediction[0,2], "3: ", prediction[0,3], "5: ", prediction[0,5])
+                st.write("0/1/3/5: ", prediction[0,0]+prediction[0,1]+prediction[0,3]+prediction[0,5], "2: ", prediction[0,2], "4/6: ", prediction[0,4] + prediction[0,6])
                 class1 = prediction[0,0]
                 class2 = prediction[0,1]
                 st.markdown("*0:* Actinic Keratoses and Intraepithelial Carcinomae (akiec)")
