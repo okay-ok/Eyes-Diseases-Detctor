@@ -22,7 +22,7 @@ if menu =="Home":
     time.sleep(1)
     status_text.success("All Set!")
     st.write("---------------------------------")
-    st.write("DetAll Contains 3 main sections: Explore the sections to your left sidebar. Once you select a section, you'll be asked to upload an image. Once uploaded, buttons will pop-up with function calls to the models. The results will be shown on the same page.")
+    st.write(" Explore the sections to your left sidebar. ")
 
 elif menu == "Eyes":
     st.sidebar.write("It analyzes cataract, diabetic retinopathy and redness levels. Upload or take an image to get started.")
@@ -54,7 +54,7 @@ elif menu == "Eyes":
                 if class1 > 3*class2:
                     st.markdown("Your Model predicts the eye cloudiness risk is {:.2f}%".format(class1 * 100) )
                 elif class2 > 3*class1:
-                    st.markdown("Your model does not  by {:.2f}%".format(class2 * 100))
+                    st.markdown("Your model thinks the eyes are clear with confidence {:.2f}%".format(class2 * 100))
                 else:
                     st.write("We encountered an ERROR in making a definite prediction. This should be temporary, please try again with a better quality image.")
 
