@@ -68,7 +68,7 @@ elif menu == "Eyes":
             np.set_printoptions(suppress=True)
             model = tensorflow.keras.models.load_model('eye_models/cataract/model.h5')
             data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
-            image = Image.open(image_input)
+            image = Image.open(picture)
             size = (224, 224)
             image = ImageOps.fit(image, size,Image.LANCZOS)  # Image.ANTIALIAS) #PIL.Image.LANCZOS
             image_array = np.asarray(image)
