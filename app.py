@@ -77,7 +77,7 @@ def main():
 
 
             
-            data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
+            data = np.ndarray(shape=(1, 28, 28, 3), dtype=np.float32)
             if analyze: 
                 image = Image.open(image_input)
                 size = (224, 224)
@@ -86,6 +86,7 @@ def main():
                 normalized_image_array = (image_array.astype(np.float32) / 127.0) - 1
                 data[0] = normalized_image_array
                 prediction = model.predict(data)
+                st.write(prediction)
                 class1 = prediction[0,0]
                 class2 = prediction[0,1]
                 if class1 - class2 > 0.5:
