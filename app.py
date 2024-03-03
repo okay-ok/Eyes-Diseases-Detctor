@@ -74,7 +74,7 @@ def main():
             np.set_printoptions(suppress=True)
             #model = tensorflow.models.load_model('model.h5')
             model = tensorflow.keras.models.load_model('model.h5',
-                                       custom_objects={"top_2_accuracy": top_2_accuracy})
+                                       custom_objects=custom_objects)
 
 
             
