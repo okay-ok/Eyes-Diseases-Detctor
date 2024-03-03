@@ -125,7 +125,9 @@ elif menu == "Skin":
                 st.markdown("*5:* Pyogenic Granulomas and Hemorrhage (vasc)")
                 st.markdown("*6:* Melanoma (mel)")
                 st.markdown(''' 
-                        :red[NOTE: Please note that akiec, bcc, nv and mel may look similar in photos, therefore we have combined their probabilities]''')
+                        :red[NOTE] \n 
+                         1. Please note that :blue[akiec, bcc, df and vasc] may look similar in photos, therefore we have combined their probabilities
+                         2. Similarly :blue[nv and mel] may look similar in photos, therefore we have combined their probabilities''')
                 if class1 - class2 > 0.5:
                     st.markdown("**Benign Detected.** Confidence: {:.2f}%".format(class1 * 100))
                 elif class2 - class1 > 0.5:
@@ -138,7 +140,7 @@ elif menu == "Skin":
         if picture:
             img = picture.getvalue()
             analyze = st.sidebar.button("Analyze")
-           
+            st.write("0/1/3/5: ", prediction[0,0]+prediction[0,1]+prediction[0,3]+prediction[0,5], "2: ", prediction[0,2], "4/6: ", prediction[0,4] + prediction[0,6])
             st.image(img)
             st.write("-----------------------------------------")
             np.set_printoptions(suppress=True)
@@ -157,7 +159,7 @@ elif menu == "Skin":
                 data[0] = normalized_image_array
                 prediction = model.predict(data)
                 st.write(prediction)
-                st.write("0/1/4/6: ", prediction[0,0]+prediction[0,1]+prediction[0,4]+prediction[0,6], "2: ", prediction[0,2], "3: ", prediction[0,3], "5: ", prediction[0,5])
+                
                 class1 = prediction[0,0]
                 class2 = prediction[0,1]
                 st.markdown("*0:* Actinic Keratoses and Intraepithelial Carcinomae (akiec)")
@@ -168,7 +170,9 @@ elif menu == "Skin":
                 st.markdown("*5:* Pyogenic Granulomas and Hemorrhage (vasc)")
                 st.markdown("*6:* Melanoma (mel)")
                 st.markdown(''' 
-                :red[NOTE: Please note that akiec, bcc, nv and mel may look similar in photos, therefore we have combined their probabilities]''')
+                        :red[NOTE] \n 
+                         1. Please note that :blue[akiec, bcc, df and vasc] may look similar in photos, therefore we have combined their probabilities
+                         2. Similarly :blue[nv and mel] may look similar in photos, therefore we have combined their probabilities''')
                 if class1 - class2 > 0.5:
                     st.markdown("**Benign Detected.** Confidence: {:.2f}%".format(class1 * 100))
                 elif class2 - class1 > 0.5:
