@@ -44,8 +44,7 @@ elif menu == "Eyes":
             image_array = np.asarray(image)
             normalized_image_array = (image_array.astype(np.float32) / 127.0) - 1
             data[0] = normalized_image_array
-            size = st.slider("Adjust Image Size: ", 300, 1000)
-            st.image(img, width=size)#, height=size)
+            
             st.write("------------------------------------------------------")
           
             if detect:
