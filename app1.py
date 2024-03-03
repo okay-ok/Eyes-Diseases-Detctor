@@ -113,10 +113,8 @@ elif menu == "Skin":
                 normalized_image_array = (image_array.astype(np.float32) / 127.0) - 1
                 data[0] = normalized_image_array
                 prediction = model.predict(data)
-                st.write("0/1/4/6", prediction[0,0]+prediction[0,1]+prediction[0,4]+prediction[0,6])
-                st.write("2", prediction[0,2])
-                st.write("3", prediction[0,3])
-                st.write("5", prediction[0,5])
+                #st.write(predcition)
+                st.write("0/1/4/6: ", prediction[0,0]+prediction[0,1]+prediction[0,4]+prediction[0,6], "2: ", prediction[0,2], "3: ", prediction[0,3], "5: ", prediction[0,5])
                 class1 = prediction[0,0]
                 class2 = prediction[0,1]
                 st.markdown("*0:* Actinic Keratoses and Intraepithelial Carcinomae (akiec)")
@@ -127,7 +125,7 @@ elif menu == "Skin":
                 st.markdown("*5:* Pyogenic Granulomas and Hemorrhage (vasc)")
                 st.markdown("*6:* Melanoma (mel)")
                 st.markdown(''' 
-                        :red[NOTE: Please note that akiec, bcc, nv and mel may look similar in photos]''')
+                        :red[NOTE: Please note that akiec, bcc, nv and mel may look similar in photos, therefore we have combined their probabilities]''')
                 if class1 - class2 > 0.5:
                     st.markdown("**Benign Detected.** Confidence: {:.2f}%".format(class1 * 100))
                 elif class2 - class1 > 0.5:
@@ -158,7 +156,8 @@ elif menu == "Skin":
                 normalized_image_array = (image_array.astype(np.float32) / 127.0) - 1
                 data[0] = normalized_image_array
                 prediction = model.predict(data)
-                st.write(prediction)
+                #st.write(prediction)
+                st.write("0/1/4/6: ", prediction[0,0]+prediction[0,1]+prediction[0,4]+prediction[0,6], "2: ", prediction[0,2], "3: ", prediction[0,3], "5: ", prediction[0,5])
                 class1 = prediction[0,0]
                 class2 = prediction[0,1]
                 st.markdown("*0:* Actinic Keratoses and Intraepithelial Carcinomae (akiec)")
@@ -169,7 +168,7 @@ elif menu == "Skin":
                 st.markdown("*5:* Pyogenic Granulomas and Hemorrhage (vasc)")
                 st.markdown("*6:* Melanoma (mel)")
                 st.markdown(''' 
-                :red[NOTE: Please note that akiec, bcc, nv and mel may look similar in photos]''')
+                :red[NOTE: Please note that akiec, bcc, nv and mel may look similar in photos, therefore we have combined their probabilities]''')
                 if class1 - class2 > 0.5:
                     st.markdown("**Benign Detected.** Confidence: {:.2f}%".format(class1 * 100))
                 elif class2 - class1 > 0.5:
