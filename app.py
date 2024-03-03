@@ -57,6 +57,9 @@ def main():
     
                     
     elif menu == "Skin":
+        import zipfile
+        with zipfile.ZipFile('model.zip', 'r') as zip_ref:
+            zip_ref.extractall()
         st.sidebar.write("Get Started.")
         st.write("---------------------------")
         st.set_option('deprecation.showfileUploaderEncoding', False)
