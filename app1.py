@@ -116,6 +116,13 @@ elif menu == "Skin":
                 st.write(prediction)
                 class1 = prediction[0,0]
                 class2 = prediction[0,1]
+                st.markdown("*0:* Actinic Keratoses and Intraepithelial Carcinomae (akiec)")
+                st.markdown("*1:* Basal Cell Carcinoma (bcc)")
+                st.markdown("*2:* Benign Keratosis-like Lesions (bkl)")
+                st.markdown("*3:* Dermatofibroma (df)")
+                st.markdown("*4:* Melanocytic Nevi (nv)")
+                st.markdown("*5:* Pyogenic Granulomas and Hemorrhage (vasc)")
+                st.markdown("*6:* Melanoma (mel)")
                 if class1 - class2 > 0.5:
                     st.markdown("**Benign Detected.** Confidence: {:.2f}%".format(class1 * 100))
                 elif class2 - class1 > 0.5:
@@ -149,6 +156,13 @@ elif menu == "Skin":
                 st.write(prediction)
                 class1 = prediction[0,0]
                 class2 = prediction[0,1]
+                st.markdown("*0:* Actinic Keratoses and Intraepithelial Carcinomae (akiec)")
+                st.markdown("*1:* Basal Cell Carcinoma (bcc)")
+                st.markdown("*2:* Benign Keratosis-like Lesions (bkl)")
+                st.markdown("*3:* Dermatofibroma (df)")
+                st.markdown("*4:* Melanocytic Nevi (nv)")
+                st.markdown("*5:* Pyogenic Granulomas and Hemorrhage (vasc)")
+                st.markdown("*6:* Melanoma (mel)")
                 if class1 - class2 > 0.5:
                     st.markdown("**Benign Detected.** Confidence: {:.2f}%".format(class1 * 100))
                 elif class2 - class1 > 0.5:
