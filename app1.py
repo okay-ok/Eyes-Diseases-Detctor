@@ -123,6 +123,7 @@ elif menu == "Skin":
                 st.markdown("*4:* Melanocytic Nevi (nv)")
                 st.markdown("*5:* Pyogenic Granulomas and Hemorrhage (vasc)")
                 st.markdown("*6:* Melanoma (mel)")
+                st.markdown(''' :red [NOTE: Please note that akiec, bcc, nv and mel look similar in photos]''')
                 if class1 - class2 > 0.5:
                     st.markdown("**Benign Detected.** Confidence: {:.2f}%".format(class1 * 100))
                 elif class2 - class1 > 0.5:
