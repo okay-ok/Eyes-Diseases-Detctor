@@ -38,7 +38,7 @@ elif menu == "Eyes":
             data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
             image = Image.open(image_input)
             size = (224, 224)
-            image = ImageOps.fit(image, size, Image.ANTIALIAS)
+            image = ImageOps.fit(image, size, Image.LANCZOS)
             image_array = np.asarray(image)
             normalized_image_array = (image_array.astype(np.float32) / 127.0) - 1
             data[0] = normalized_image_array
@@ -68,7 +68,7 @@ elif menu == "Eyes":
             data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
             image = Image.open(image_input)
             size = (224, 224)
-            image = ImageOps.fit(image, size, Image.ANTIALIAS)
+            image = ImageOps.fit(image, size, Image.LANCZOS)
             image_array = np.asarray(image)
             normalized_image_array = (image_array.astype(np.float32) / 127.0) - 1
             data[0] = normalized_image_array
@@ -88,7 +88,7 @@ elif menu == "Eyes":
                     st.write("We encountered an ERROR. This should be temporary, please try again with a better quality image. Cheers!")
 
 elif menu == "Skin":
-    st.sidebar.write("It detects whether the patient has benign or malignant type of cancer. Further classifications are still under testing. Upload or take an image to get started.")
+    st.sidebar.write("Get started.")
     st.write("---------------------------")
     image_input = st.file_uploader("Choose an eye image: ", type=['png', 'jpg'])
     start_camera = st.checkbox("Start Camera")
