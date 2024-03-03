@@ -139,7 +139,7 @@ elif menu == "Skin":
             
             data = np.ndarray(shape=(1, 28, 28, 3), dtype=np.float32)
             if analyze: 
-                image = Image.open(image_input)
+                image = Image.open(picture)
                 size = (28, 28)
                 image = ImageOps.fit(image, size, Image.LANCZOS)
                 image_array = np.asarray(image)
