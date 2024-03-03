@@ -60,6 +60,7 @@ def main():
         import zipfile
         with zipfile.ZipFile('model.zip', 'r') as zip_ref:
             zip_ref.extractall()
+            st.write('extracted!')
         st.sidebar.write("Get Started.")
         st.write("---------------------------")
         st.set_option('deprecation.showfileUploaderEncoding', False)
@@ -71,7 +72,13 @@ def main():
             st.image(img)
             st.write("-----------------------------------------")
             np.set_printoptions(suppress=True)
-            model = tensorflow.keras.models.load_model('model.h5')
+            #model = tensorflow.keras.models.load_model('model.h5')
+
+
+            from tensorflow.python.saved_model import loader_impl
+            from tensorflow.python.keras.saving.saved_model import load as saved_model_load
+            loader_impl.parse_saved_model('model.h5')
+            model = saved_model_load.load(load_path, custom_objects={"custom_metric": custom_metric})
             data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
             if analyze: 
                 image = Image.open(image_input)
