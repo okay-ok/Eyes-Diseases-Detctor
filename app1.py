@@ -95,53 +95,63 @@ elif menu == "Skin":
     if image_input:
             img = image_input.getvalue()
             analyze = st.sidebar.button("Analyze")
-            size = st.slider("Adjust image size: ", 300, 1000)
-            st.image(img, width=size, height=size)
+           
+            st.image(img)
             st.write("-----------------------------------------")
             np.set_printoptions(suppress=True)
-            model = keras.models.load_model('skin_model/model.h5')
-            data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
+            #model = tensorflow.models.load_model('model.h5')
+            model = tensorflow.keras.models.load_model('best_model (1).h5')
+
+
+            
+            data = np.ndarray(shape=(1, 28, 28, 3), dtype=np.float32)
             if analyze: 
                 image = Image.open(image_input)
-                size = (224, 224)
-                image = ImageOps.fit(image, size, Image.ANTIALIAS)
+                size = (28, 28)
+                image = ImageOps.fit(image, size, Image.LANCZOS)
                 image_array = np.asarray(image)
                 normalized_image_array = (image_array.astype(np.float32) / 127.0) - 1
                 data[0] = normalized_image_array
                 prediction = model.predict(data)
+                st.write(prediction)
                 class1 = prediction[0,0]
                 class2 = prediction[0,1]
                 if class1 - class2 > 0.5:
-                    st.markdown("Benign Detected. Confidence: {:.2f}%".format(class1 * 100))
+                    st.markdown("**Benign Detected.** Confidence: {:.2f}%".format(class1 * 100))
                 elif class2 - class1 > 0.5:
-                    st.markdown("Malign Detected. Confidence: {:.2f}".format(class2 * 100))
+                    st.markdown("**Malign Detected.** Confidence: {:.2f}".format(class2 * 100))
                 else:
                     st.write("Error! Please upload a better quality image for accuracy.")
 
     if(start_camera):
-        picture = st.camera_input("Take a picture", key="eye_photo" ,help="Click a close up photo of your eye so that we can check and analyse it")
+        picture = st.camera_input("Take a picture", key="eye_photo" ,help="Click a close up photo of your skin so that we can check and analyse it")
         if picture:
-            img = image_input.getvalue()
+            img = picture.getvalue()
             analyze = st.sidebar.button("Analyze")
-            size = st.slider("Adjust image size: ", 300, 1000)
-            st.image(img, width=size, height=size)
+           
+            st.image(img)
             st.write("-----------------------------------------")
             np.set_printoptions(suppress=True)
-            model = keras.models.load_model('skin_model/model.h5')
-            data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
+            #model = tensorflow.models.load_model('model.h5')
+            model = tensorflow.keras.models.load_model('best_model (1).h5')
+
+
+            
+            data = np.ndarray(shape=(1, 28, 28, 3), dtype=np.float32)
             if analyze: 
                 image = Image.open(image_input)
-                size = (224, 224)
-                image = ImageOps.fit(image, size, Image.ANTIALIAS)
+                size = (28, 28)
+                image = ImageOps.fit(image, size, Image.LANCZOS)
                 image_array = np.asarray(image)
                 normalized_image_array = (image_array.astype(np.float32) / 127.0) - 1
                 data[0] = normalized_image_array
                 prediction = model.predict(data)
+                st.write(prediction)
                 class1 = prediction[0,0]
                 class2 = prediction[0,1]
                 if class1 - class2 > 0.5:
-                    st.markdown("Benign Detected. Confidence: {:.2f}%".format(class1 * 100))
+                    st.markdown("**Benign Detected.** Confidence: {:.2f}%".format(class1 * 100))
                 elif class2 - class1 > 0.5:
-                        st.markdown("Malign Detected. Confidence: {:.2f}".format(class2 * 100))
+                    st.markdown("**Malign Detected.** Confidence: {:.2f}".format(class2 * 100))
                 else:
                     st.write("Error! Please upload a better quality image for accuracy.")
