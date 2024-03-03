@@ -5,10 +5,10 @@ import numpy as np
 import time
 
 def main():
-    st.title("DetAll: All HealthCare Detection Tools at one place")
+    st.title("Eye_Risk_Demo")
     st.write("------------------------------------------")
     st.sidebar.title("Command Bar")
-    choices = ["Home","Eyes", "COVID", "Skin"]
+    choices = ["Home","Eye-risk", "COVID", "Skin"]
     menu = st.sidebar.selectbox("Menu: ", choices)
     st.set_option('deprecation.showfileUploaderEncoding', False)
     if menu =="Home":
@@ -22,7 +22,7 @@ def main():
         st.write("---------------------------------")
         st.write("DetAll Contains 3 main sections: Explore the sections to your left sidebar. Once you select a section, you'll be asked to upload an image. Once uploaded, buttons will pop-up with function calls to the models. The results will be shown on the same page.")
     elif menu == "Eyes":
-        st.sidebar.write("It analyzes cataract, diabetic retinopathy and redness levels. Upload an image to get started.")
+        st.sidebar.write("Your uploaded model should have two classes: Risky/Cloudy and Low-Risk/Clear. This interface will only output for confidence levels above 75%")
         st.write("---------------------------")
         image_input = st.sidebar.file_uploader("Choose an eye image: ", type="jpg")
         if image_input:
@@ -47,10 +47,10 @@ def main():
                 prediction = model.predict(data)
                 class1 = prediction[0,0]
                 class2 = prediction[0,1]
-                if class1 > class2:
-                    st.markdown("DetAll thinks this is a **Cataract** by {:.2f}%".format(class1 * 100) )
-                elif class2 > class1:
-                    st.markdown("DetAll thinks this is not **Cataract** by {:.2f}%".format(class2 * 100))
+                if class1 > 3*class2:
+                    st.markdown("Your Model predicts the eye cloudiness risk is {:.2f}%".format(class1 * 100) )
+                elif class2 > 3*class1:
+                    st.markdown("Your model does not  by {:.2f}%".format(class2 * 100))
                 else:
                     st.write("We encountered an ERROR. This should be temporary, please try again with a better quality image. Cheers!")
             if dr:
