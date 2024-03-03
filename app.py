@@ -49,7 +49,7 @@ def main():
                 if class1 > 3*class2:
                     st.markdown("Your Model predicts the eye cloudiness risk is {:.2f}%".format(class1 * 100) )
                 elif class2 > 3*class1:
-                    st.markdown("Your model does not  by {:.2f}%".format(class2 * 100))
+                    st.markdown("Your model does not detect cloudiness  by {:.2f}%".format(class2 * 100))
                 else:
                     st.write("We encountered an ERROR in making a definite prediction. This should be temporary, please try again with a better quality image.")
            
