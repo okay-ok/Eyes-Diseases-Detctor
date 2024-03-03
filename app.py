@@ -20,8 +20,8 @@ def main():
         time.sleep(1)
         status_text.success("All Set!")
         st.write("---------------------------------")
-        st.write("DetAll Contains 3 main sections: Explore the sections to your left sidebar. Once you select a section, you'll be asked to upload an image. Once uploaded, buttons will pop-up with function calls to the models. The results will be shown on the same page.")
-    elif menu == "Eyes":
+        st.write(" Explore the sections to your left sidebar.")
+    elif menu == "Eye-risk":
         st.sidebar.write("Your uploaded model should have two classes: Risky/Cloudy and Low-Risk/Clear. This interface will only output for confidence levels above 75%")
         st.write("---------------------------")
         image_input = st.sidebar.file_uploader("Choose an eye image: ", type="jpg")
