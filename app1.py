@@ -33,8 +33,8 @@ elif menu == "Eyes":
     if image_input:
         
             img = image_input.getvalue()
-            st.sidebar.image(img, width=300)#, height=300)
-            detect = st.sidebar.button("Run Analysis using uploaded model")
+            st.image(img, width=300)#, height=300)
+            detect = st.button("Run Analysis using uploaded model")
             np.set_printoptions(suppress=True)
             model = tensorflow.keras.models.load_model('eye_models/cataract/model.h5')
             data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
@@ -63,8 +63,8 @@ elif menu == "Eyes":
         picture = st.camera_input("Take a picture", key="eye_photo" ,help="Click a close up photo of your eye so that we can check and analyse it")
         if picture:
             img = picture.getvalue()
-            st.sidebar.image(img, width=300)#, height=300)
-            detect = st.sidebar.button("Run Analysis using uploaded model")
+            st.image(img, width=300)#, height=300)
+            detect = st.button("Run Analysis using uploaded model")
             np.set_printoptions(suppress=True)
             model = tensorflow.keras.models.load_model('eye_models/cataract/model.h5')
             data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
