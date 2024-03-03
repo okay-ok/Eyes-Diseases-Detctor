@@ -29,7 +29,8 @@ elif menu == "Eyes":
     image_input = st.file_uploader("Choose an eye image: ", type=['png', 'jpg'])
     start_camera = st.checkbox("Start Camera")
 
-   if image_input:
+    if image_input:
+        
             img = image_input.getvalue()
             st.sidebar.image(img, width=300)#, height=300)
             detect = st.sidebar.button("Run Analysis using uploaded model")
