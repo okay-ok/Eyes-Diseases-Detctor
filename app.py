@@ -72,13 +72,12 @@ def main():
             st.image(img)
             st.write("-----------------------------------------")
             np.set_printoptions(suppress=True)
-            #model = tensorflow.keras.models.load_model('model.h5')
+            #model = tensorflow.models.load_model('model.h5')
+            model = tf.keras.models.load_model('model.h5', , 
+                                       custom_objects={"top_2_accuracy": top_2_accuracy})
 
 
-            from tensorflow.python.saved_model import loader_impl
-            from tensorflow.python.keras.saving.saved_model import load as saved_model_load
-            loader_impl.parse_saved_model('model.h5')
-            model = saved_model_load.load(load_path, custom_objects={"custom_metric": custom_metric})
+            
             data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
             if analyze: 
                 image = Image.open(image_input)
